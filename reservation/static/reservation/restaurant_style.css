@@ -1,0 +1,27 @@
+body {
+  background-color: #181e4f;
+}
+
+.card {
+  width: calc(100 / 4);
+  transition: .10s, transform .10s ease;
+  -moz-transition: .10s, transform .10s ease;
+  -webkit-transition: .10s, transform .10s ease;
+}
+.welcome {
+  text-align: center;
+  color: white;
+}
+.card-title {
+  text-align: center;
+}
+.card:hover {
+  -ms-transform: scale(1.01); /* IE 9 */
+  -webkit-transform: scale(1.01); /* Safari */
+  transform: scale(1.01);
+}
+.card:active {
+  -ms-transform: scale(0.99); /* IE 9 */
+  -webkit-transform: scale(0.99); /* Safari */
+  transform: scale(0.99);
+}

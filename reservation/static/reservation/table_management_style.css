@@ -1,0 +1,44 @@
+.center {
+  width: 150px;
+  text-align: center;
+}
+
+.tmh {
+  text-align: center;
+  margin-top: 150px;
+  margin-bottom: 75px;
+}
+
+.managing-availability-table {
+  width: 75% !important;
+}
+
+.centertext {
+  text-align: center;
+}
+
+.centerwidth {
+  margin: auto;
+  width: 150px;
+}
+
+.tablecenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+td {
+  font-size: larger;
+  text-align: center;
+}
+
+body {
+  width: 100%;
+}
+
+thead > tr {
+  background-color: #a32638; /* This is the colour for the headings */
+  color: white; /* This is the colour for the fonts */
+}

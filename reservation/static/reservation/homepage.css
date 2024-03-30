@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100%;
+}
+
+.homepage{    /* centering the title */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-title{
+    font-family: 'Tangerine', cursive;  /* This is the font used for the title*/
+}
+
+thead > tr {
+    background-color: #a32638;     /* This is the colour for the headings */
+    color: white;       /* This is the colour for the fonts */
+}
+
+.page-title{
+    margin-bottom: 10px,
+}
+.reservation-table{
+    width: 80% !important; 
+}

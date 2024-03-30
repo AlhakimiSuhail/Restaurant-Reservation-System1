@@ -1,0 +1,254 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Manage tables</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'reservation/table_management_style.css' %}"
+    />
+    <!--link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script-->
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
+    <![endif]-->
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand">Reservation System</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'homepage_restaurant' %}"
+                >Upcoming Reservations</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'table_management' %}"
+                >Manage Tables</a
+              >
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index' %}">Log out</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="tmh">
+      <h1>Manage your table availability</h1>
+    </div>
+
+    <div class="tablecenter">
+      <table
+        class="table table-striped table-hover managing-availability-table"
+      >
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" class="centertext">Table Capacity (# of Seats)</th>
+            <th scope="col" class="centertext">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2</td>
+            <td>
+              <div class="centerwidth">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-number"
+                      data-type="minus"
+                      data-field="twoSeat"
+                    >
+                      <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                  </span>
+                  <input
+                    type="number"
+                    name="twoSeat"
+                    class="form-control input-number centertext"
+                    value="{{ twoSeat }}"
+                    min="0"
+                    max="30"
+                    form="tableForm"
+                    readonly
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-number"
+                      data-type="plus"
+                      data-field="twoSeat"
+                    >
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              <div class="centerwidth">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-number"
+                      data-type="minus"
+                      data-field="fourSeat"
+                    >
+                      <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                  </span>
+                  <input
+                    type="number"
+                    name="fourSeat"
+                    class="form-control input-number centertext"
+                    value="{{ fourSeat }}"
+                    min="0"
+                    max="30"
+                    form="tableForm"
+                    readonly
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-number"
+                      data-type="plus"
+                      data-field="fourSeat"
+                    >
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>
+              <div class="centerwidth">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-number"
+                      data-type="minus"
+                      data-field="sixSeat"
+                    >
+                      <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                  </span>
+                  <input
+                    type="number"
+                    name="sixSeat"
+                    class="form-control input-number centertext"
+                    value="{{ sixSeat }}"
+                    min="0"
+                    max="30"
+                    form="tableForm"
+                    readonly
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-number"
+                      data-type="plus"
+                      data-field="sixSeat"
+                    >
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>8+</td>
+            <td>
+              <div class="centerwidth">
+                <div class="input-group">
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-danger btn-number"
+                      data-type="minus"
+                      data-field="eightSeat"
+                    >
+                      <span class="glyphicon glyphicon-minus"></span>
+                    </button>
+                  </span>
+                  <input
+                    type="number"
+                    name="eightSeat"
+                    class="form-control input-number centertext"
+                    value="{{ eightSeat }}"
+                    min="0"
+                    max="30"
+                    form="tableForm"
+                    readonly
+                  />
+                  <span class="input-group-btn">
+                    <button
+                      type="button"
+                      class="btn btn-success btn-number"
+                      data-type="plus"
+                      data-field="eightSeat"
+                    >
+                      <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <form id="tableForm" name="tableForm" method="post">{% csrf_token %}</form>
+    <p style="text-align: center">
+      <button form="tableForm" type="submit" name="tableSave">Save</button>
+    </p>
+    <script src="" async defer></script>
+    <script src="static/reservation/tablemanagement.js"></script>
+  </body>
+</html>

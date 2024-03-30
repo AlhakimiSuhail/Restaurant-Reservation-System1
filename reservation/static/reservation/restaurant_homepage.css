@@ -1,0 +1,28 @@
+#paragraph-font {
+    color: white;
+    text-align: center;
+  }
+
+body {
+  background-color: #181e4f;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.list-group{
+    max-height: 300px;
+    margin-bottom: 10px;
+    overflow:scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.container-class{
+    
+}

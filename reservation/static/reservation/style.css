@@ -1,0 +1,19 @@
+body {
+  background-color: #181e4f;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-family: 'Tangerine', cursive;
+}
+
+.card-title {
+  text-align: center;
+}
+
+#login_pic {
+  max-width: 100%;
+  width: 100%;
+}
+

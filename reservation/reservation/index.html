@@ -1,0 +1,173 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Restaurant Reservation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'reservation/style.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <img src="{% static 'reservation/img/restaurant.jpg' %}" alt="restaurant" id="login_pic">
+    <div class="container">
+        <div class="row mt-5" id="title">
+            <h1 class="display-1 my-4">
+                The Restaurant Reservation System
+            </h1>
+        </div>
+        <div class="row mt-5">
+            <div class="card col mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Not a member? Register here!</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Name -->
+                        <div class="form-outline mb-4 mt-4">
+                            <input type="text" name="fullName" id="fullName" class="form-control" maxlength="200"
+                                required />
+                            <label class="form-label" for="fullName">Full name</label>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" name="registerEmail" id="registerEmail" class="form-control"
+                                maxlength="200" required />
+                            <label class="form-label" for="registerEmail">Email address</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" name="registerPassword" id="registerPassword" minlength="8"
+                                maxlength="32" class="form-control" required />
+                            <label class="form-label" for="registerPassword">Password</label>
+                        </div>
+
+                        <!-- Validate password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" name="registerPassword2" id="registerPassword2" class="form-control"
+                                minlength="8" maxlength="32" required />
+                            <label class="form-label" for="registerPassword2">Re-enter password</label>
+                        </div>
+
+                        <div id="restaurantFields" style="display: none;">
+                            <div class="form-outline mb-4">
+                                <input type="text" name="restaurantName" id="restaurantName" class="form-control"
+                                    maxlength="200" />
+                                <label class="form-label" for="restaurantName">Restaurant name</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" name="restaurantDescription" id="restaurantDescription"
+                                    class="form-control" maxlength="200" />
+                                <label class="form-label" for="description">Description</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" name="restaurantLocation" id="restaurantLocation"
+                                    class="form-control" maxlength="200" />
+                                <label class="form-label" for="location">Location</label>
+                            </div>
+                        </div>
+
+                        {% if registerWarning %}
+                        <div class="alert alert-danger" role="alert">
+                            The passwords do not match or your email address is already associated with an account.
+                            Please try again.
+                        </div>
+                        {% endif %}
+
+                        <!-- Select if restaurant manager or user -->
+                        <label class="form-label">Are you a</label> <br>
+                        <div class="form-check form-check-inline mb-4 mt-2">
+                            <input class="form-check-input" type="radio" name="registerType" id="patron" value="patron"
+                                checked onChange="restaurantFields()">
+                            <label class="form-check-label" for="patron">Patron</label>
+                        </div>
+                        <div class="form-check form-check-inline mb-4 mt-2">
+                            <input class="form-check-input" type="radio" name="registerType" id="restaurant"
+                                value="restaurant" onChange="restaurantFields()">
+                            <label class="form-check-label" for="restaurant">Restaurant Manager</label>
+                        </div> <br>
+
+                        <!-- Submit button -->
+                        <input class="btn btn-primary mb-4" type="submit" name='register' value="Register">
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-1">
+            </div>
+
+            <div class="card col mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Sign in</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <!-- Email input -->
+                        <div class="form-outline mb-4 mt-4">
+                            <input type="email" name="loginEmail" id="loginEmail" class="form-control" maxlength="200"
+                                required />
+                            <label class="form-label" for="loginEmail">Email address</label>
+                        </div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" name="loginPassword" id="loginPassword" class="form-control"
+                                minlength="8" maxlength="32" required />
+                            <label class="form-label" for="loginPassword">Password</label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <input class="btn btn-primary mb-4" type="submit" name='login' value="Sign in">
+
+                        {% if registerComplete %}
+                        <div class="alert alert-success" role="alert">
+                            Your account was successfully created! You may now log in.
+                        </div>
+                        {% endif %}
+
+                        {% if loginFailure %}
+                        <div class="alert alert-danger" role="alert">
+                            Incorrect email or password. Please try again.
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    setTimeout(scroll, 750);
+    function scroll() {
+        document.getElementById("title").scrollIntoView();
+    }
+    function restaurantFields() {
+        var restaurantFieldsDiv = document.getElementById("restaurantFields");
+        var restaurantRadioButton = document.getElementById("restaurant");
+        if(restaurantRadioButton.checked){
+            restaurantFieldsDiv.style.display="inline";
+            document.getElementById("restaurantName").setAttribute("required", "");
+            document.getElementById("restaurantDescription").setAttribute("required", "");
+            document.getElementById("restaurantLocation").setAttribute("required", "");
+        }
+        else{
+            restaurantFieldsDiv.style.display="none";
+            document.getElementById("restaurantName").removeAttribute("required");
+            document.getElementById("restaurantDescription").removeAttribute("required");
+            document.getElementById("restaurantLocation").removeAttribute("required");
+        }
+    }
+</script>
